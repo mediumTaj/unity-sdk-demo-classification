@@ -47,10 +47,8 @@ public class AirStrike : MonoBehaviour
         
         foreach(Collider hitCollider in hitColliders)
         {
-            Log.Debug("AirStrike", "name: {0}", hitCollider.gameObject.name);
-
             //  get enenmy health component.
-            EnemyHealth enemyHealth = hitCollider.transform.root.GetComponentInChildren<EnemyHealth>();//.gameObject.GetComponentInChildren<EnemyHealth>();
+            CompleteProject.EnemyHealth enemyHealth = hitCollider.gameObject.GetComponentInChildren<CompleteProject.EnemyHealth>();
             if (enemyHealth != null)
             {
 
