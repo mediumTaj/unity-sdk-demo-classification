@@ -7,24 +7,36 @@ using IBM.Watson.DeveloperCloud.Services.NaturalLanguageClassifier.v1;
 
 public class WatsonEnabled : MonoBehaviour
 {
-	void Start ()
-	{
-		LogSystem.InstallDefaultReactors();
-	}
+    [SerializeField]
+    private GameObject m_AirStrikePrefab;
+
+    [SerializeField]
+    private Transform m_PlayerTransform;
+
+    void Start()
+    {
+        LogSystem.InstallDefaultReactors();
+    }
 
     void OnEnable()
     {
-        //EventManager.Instance.RegisterEventReceiver("OnAirSupportRequest", HandleAirSupportRequest);
+        EventManager.Instance.RegisterEventReceiver("OnAirSupportRequest", HandleAirSupportRequest);
+        EventManager.Instance.RegisterEventReceiver("OnAirSupportRequestFromKeyboard", HandleAirSupportRequestFromKeyboard);
     }
 
     void OnDisable()
     {
-        //EventManager.Instance.UnregisterEventReceiver("OnAirSupportRequest", HandleAirSupportRequest);
+        EventManager.Instance.UnregisterEventReceiver("OnAirSupportRequest", HandleAirSupportRequest);
+        EventManager.Instance.UnregisterEventReceiver("OnAirSupportRequestFromKeyboard", HandleAirSupportRequestFromKeyboard);
     }
 
-    //private void HandleAirSupportRequest(object[] args)
-    //{
-    //    EventManager.Instance.SendEvent("OnDebugMessage", (args[0] as ClassifyResult).top_class + ", " + (args[0] as ClassifyResult).topConfidence);
-    //    Log.Debug("WatsonEnabled", "AirSupport Event received!");
-    //}
+    private void HandleAirSupportRequest(object[] args)
+    {
+        Instantiate(m_AirStrikePrefab, m_PlayerTransform.localPosition + new Vector3(0f, 10f, 0f), Quaternion.identity);
+    }
+
+    private void HandleAirSupportRequestFromKeyboard(object[] args)
+    {
+        Instantiate(m_AirStrikePrefab, m_PlayerTransform.localPosition + new Vector3(0f, 10f, 0f), Quaternion.identity);
+    }
 }

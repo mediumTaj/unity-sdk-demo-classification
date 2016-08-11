@@ -7,46 +7,23 @@ using IBM.Watson.DeveloperCloud.Services.NaturalLanguageClassifier.v1;
 public class AirStrike : MonoBehaviour
 {
     //  Overlap sphere radius.
-    public int BlastRadius = 5;
+    private int BlastRadius = 15;
     //  Maximum amount of damage at the detonation point.
-    public int MaxDamage = 10;
-
+    private int MaxDamage = 100;
     //  Enemy layer mask.
     int shootableMask;
-
-    public void CallAirstrike()
-    {
-        AirstrikeDamage(gameObject.transform.localPosition);
-    }
+    //  Has the Airstrike been detonated?
+    private bool isDetonated = false;
 
     void OnEnable()
     {
-        EventManager.Instance.RegisterEventReceiver("OnAirSupportRequest", HandleAirSupportRequest);
-        EventManager.Instance.RegisterEventReceiver("OnAirSupportRequestFromKeyboard", HandleAirSupportRequestFromKeyboard);
-
-        // Create a layer mask for the Shootable layer.
         shootableMask = LayerMask.GetMask("Shootable");
     }
 
-    void OnDisable()
+    void OnCollisionEnter(Collision collision)
     {
-        EventManager.Instance.UnregisterEventReceiver("OnAirSupportRequest", HandleAirSupportRequest);
-        EventManager.Instance.UnregisterEventReceiver("OnAirSupportRequestFromKeyboard", HandleAirSupportRequestFromKeyboard);
-    }
-
-    private void HandleAirSupportRequest(object[] args)
-    {
-        EventManager.Instance.SendEvent("OnDebugMessage", (args[0] as ClassifyResult).top_class + ", " + (args[0] as ClassifyResult).topConfidence);
-        Log.Debug("WatsonEnabled", "AirSupport Event received!");
-
-        CallAirstrike();
-    }
-
-    private void HandleAirSupportRequestFromKeyboard(object[] args)
-    {
-        Log.Debug("WatsonEnabled", "AirSupport Event received!");
-
-        CallAirstrike();
+        if (!isDetonated)
+            AirstrikeDamage(gameObject.transform.position);
     }
 
     public void AirstrikeDamage(Vector3 detonationPoint)
@@ -54,36 +31,38 @@ public class AirStrike : MonoBehaviour
         //  Get colliders in overlap sphere.
         Collider[] hitColliders = Physics.OverlapSphere(detonationPoint, BlastRadius, shootableMask);
         
+        //  Iterate through colliders
         foreach(Collider hitCollider in hitColliders)
         {
-            //  get enenmy health component.
+            //  get enemy health component.
             CompleteProject.EnemyHealth enemyHealth = hitCollider.gameObject.GetComponentInChildren<CompleteProject.EnemyHealth>();
             if (enemyHealth != null)
             {
-
-                //  find distance.
-                float distance = Vector3.Distance(detonationPoint, hitCollider.transform.localPosition);
-
-                //  find damage.
-                int damage = -Mathf.RoundToInt(Mathf.Pow(distance / BlastRadius, 2)) + MaxDamage;
-
-                //  find hit point.
-                Ray damageRay = new Ray();
-                damageRay.origin = detonationPoint;
-                damageRay.direction = detonationPoint - hitCollider.transform.position;
-
-                //  raycast to find the point where the blast hits.
-                RaycastHit damageHit;
-                Vector3 hitPoint = Vector3.zero;
-                if (Physics.Raycast(damageRay, out damageHit, BlastRadius, shootableMask))
+                if (Vector3.Distance(detonationPoint, hitCollider.transform.position) < BlastRadius)
                 {
-                    hitPoint = damageHit.point;
-                }
+                    //  find distance.
+                    float distance = Vector3.Distance(detonationPoint, hitCollider.transform.position);
 
-                Log.Debug("AirStrike", "damage: {0}, hitPoint: {1}, distance: {2}", damage, hitPoint, distance);
-                //  deal damage. 
-                enemyHealth.TakeDamage(damage, hitPoint);
+                    //  find damage.
+                    int damage = -Mathf.RoundToInt(Mathf.Pow(distance / BlastRadius, 2)) + MaxDamage;
+
+                    //  raycast to find the point where the blast hits.
+                    RaycastHit damageHit;
+                    Physics.Raycast(detonationPoint, (hitCollider.transform.position - detonationPoint), out damageHit);
+                    Vector3 hitPoint = damageHit.point;
+                    
+                    //Debug.DrawRay(detonationPoint, hitCollider.transform.position - detonationPoint, Color.red, Mathf.Infinity);
+
+                    Log.Debug("AirStrike", "damage: {0}, hitPoint: {1}, distance: {2}", damage, hitPoint, distance);
+
+                    //  deal damage. 
+                    enemyHealth.TakeDamage(damage, hitPoint);
+                }
             }
         }
+
+        isDetonated = true;
+
+        Destroy(gameObject);
     }
 }
