@@ -7,9 +7,9 @@ using IBM.Watson.DeveloperCloud.Services.NaturalLanguageClassifier.v1;
 public class AirStrike : MonoBehaviour
 {
     //  Overlap sphere radius.
-    public int BlastRadius = 50;
+    public int BlastRadius = 5;
     //  Maximum amount of damage at the detonation point.
-    public int MaxDamage = 100;
+    public int MaxDamage = 10;
 
     //  Enemy layer mask.
     int shootableMask;
@@ -22,6 +22,7 @@ public class AirStrike : MonoBehaviour
     void OnEnable()
     {
         EventManager.Instance.RegisterEventReceiver("OnAirSupportRequest", HandleAirSupportRequest);
+        EventManager.Instance.RegisterEventReceiver("OnAirSupportRequestFromKeyboard", HandleAirSupportRequestFromKeyboard);
 
         // Create a layer mask for the Shootable layer.
         shootableMask = LayerMask.GetMask("Shootable");
@@ -30,11 +31,19 @@ public class AirStrike : MonoBehaviour
     void OnDisable()
     {
         EventManager.Instance.UnregisterEventReceiver("OnAirSupportRequest", HandleAirSupportRequest);
+        EventManager.Instance.UnregisterEventReceiver("OnAirSupportRequestFromKeyboard", HandleAirSupportRequestFromKeyboard);
     }
 
     private void HandleAirSupportRequest(object[] args)
     {
         EventManager.Instance.SendEvent("OnDebugMessage", (args[0] as ClassifyResult).top_class + ", " + (args[0] as ClassifyResult).topConfidence);
+        Log.Debug("WatsonEnabled", "AirSupport Event received!");
+
+        CallAirstrike();
+    }
+
+    private void HandleAirSupportRequestFromKeyboard(object[] args)
+    {
         Log.Debug("WatsonEnabled", "AirSupport Event received!");
 
         CallAirstrike();
@@ -63,6 +72,7 @@ public class AirStrike : MonoBehaviour
                 damageRay.origin = detonationPoint;
                 damageRay.direction = detonationPoint - hitCollider.transform.position;
 
+                //  raycast to find the point where the blast hits.
                 RaycastHit damageHit;
                 Vector3 hitPoint = Vector3.zero;
                 if (Physics.Raycast(damageRay, out damageHit, BlastRadius, shootableMask))
