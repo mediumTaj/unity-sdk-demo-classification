@@ -7,13 +7,11 @@ using IBM.Watson.DeveloperCloud.Services.NaturalLanguageClassifier.v1;
 public class AirStrike : MonoBehaviour
 {
     //  Overlap sphere radius.
-    private int BlastRadius = 10;
+    private int BlastRadius = 15;
     //  Maximum amount of damage at the detonation point.
     private int MaxDamage = 100;
     //  Enemy layer mask.
     int shootableMask;
-    //  AirStrike target
-    private Vector3 airStrikeTarget;
     //  Has the Airstrike been detonated?
     private bool isDetonated = false;
 
@@ -25,14 +23,7 @@ public class AirStrike : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         if (!isDetonated)
-        {
-            foreach (ContactPoint contact in collision.contacts)
-            {
-                Log.Debug("AirStrike", "CONTACT! {0}", contact.otherCollider.gameObject.name);
-            }
-
             AirstrikeDamage(gameObject.transform.position);
-        }
     }
 
     public void AirstrikeDamage(Vector3 detonationPoint)
@@ -63,6 +54,7 @@ public class AirStrike : MonoBehaviour
                     //Debug.DrawRay(detonationPoint, hitCollider.transform.position - detonationPoint, Color.red, Mathf.Infinity);
 
                     Log.Debug("AirStrike", "damage: {0}, hitPoint: {1}, distance: {2}", damage, hitPoint, distance);
+
                     //  deal damage. 
                     enemyHealth.TakeDamage(damage, hitPoint);
                 }
