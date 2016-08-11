@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
-using IBM.Watson.DeveloperCloud.Utilities;
 using IBM.Watson.DeveloperCloud.Logging;
-using IBM.Watson.DeveloperCloud.Services.NaturalLanguageClassifier.v1;
+using IBM.Watson.DeveloperCloud.Utilities;
 
 public class AirStrike : MonoBehaviour
 {
@@ -28,6 +26,9 @@ public class AirStrike : MonoBehaviour
 
     public void AirstrikeDamage(Vector3 detonationPoint)
     {
+        //  Dispatch event to flash
+        EventManager.Instance.SendEvent("OnAirstrikeCollide");
+
         //  Get colliders in overlap sphere.
         Collider[] hitColliders = Physics.OverlapSphere(detonationPoint, BlastRadius, shootableMask);
         
