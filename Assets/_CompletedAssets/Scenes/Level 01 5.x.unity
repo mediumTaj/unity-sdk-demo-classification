@@ -13,7 +13,7 @@ SceneSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 7
+  serializedVersion: 6
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
@@ -37,12 +37,12 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 8900000, guid: a7bed68887a07e34394d4191b3081359, type: 3}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.121189736, g: 0.16652103, b: 0.23509744, a: 1}
 --- !u!157 &4
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 7
+  serializedVersion: 6
   m_GIWorkflowMode: 1
+  m_LightmapsMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -53,22 +53,17 @@ LightmapSettings:
     m_EnableBakedLightmaps: 0
     m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
-    serializedVersion: 4
+    serializedVersion: 3
     m_Resolution: 1
     m_BakeResolution: 40
     m_TextureWidth: 1024
     m_TextureHeight: 1024
-    m_AO: 1
     m_AOMaxDistance: 1
-    m_CompAOExponent: 1
-    m_CompAOExponentDirect: 0
     m_Padding: 2
+    m_CompAOExponent: 1
     m_LightmapParameters: {fileID: 0}
-    m_LightmapsBakeMode: 1
     m_TextureCompression: 0
-    m_DirectLightInLightProbes: 1
     m_FinalGather: 0
-    m_FinalGatherFiltering: 1
     m_FinalGatherRayCount: 1024
     m_ReflectionCompression: 2
   m_LightingDataAsset: {fileID: 112000019, guid: 32dc7b1aed1e57d41a41a0257315710b,
@@ -1265,7 +1260,7 @@ Light:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 545451770}
   m_Enabled: 1
-  serializedVersion: 7
+  serializedVersion: 6
   m_Type: 1
   m_Color: {r: 0.7649088, g: 0.7205882, b: 1, a: 1}
   m_Intensity: 0.27170587
@@ -1275,7 +1270,6 @@ Light:
   m_Shadows:
     m_Type: 2
     m_Resolution: -1
-    m_CustomResolution: -1
     m_Strength: 1
     m_Bias: 0.05
     m_NormalBias: 0.4
@@ -1288,10 +1282,10 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_Lightmapping: 4
-  m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+  m_AreaSize: {x: 1, y: 1}
 --- !u!4 &545451772
 Transform:
   m_ObjectHideFlags: 0
@@ -1768,6 +1762,7 @@ ReflectionProbe:
   m_TimeSlicingMode: 0
   m_Resolution: 128
   m_UpdateFrequency: 0
+  m_Importance: 1
   m_BoxSize: {x: 75, y: 41.305748, z: 75}
   m_BoxOffset: {x: 0, y: 19.998281, z: 0}
   m_NearClip: 0.3
@@ -1784,7 +1779,6 @@ ReflectionProbe:
   m_BoxProjection: 0
   m_RenderDynamicObjects: 0
   m_UseOcclusionCulling: 1
-  m_Importance: 1
   m_CustomBakedTexture: {fileID: 0}
 --- !u!1 &772417694 stripped
 GameObject:
@@ -2846,6 +2840,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1404522896}
     m_Modifications:
+    - target: {fileID: 11489316, guid: d82e765678923254584e439593116ca4, type: 2}
+      propertyPath: m_ClassEventList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 434176, guid: d82e765678923254584e439593116ca4, type: 2}
       propertyPath: m_LocalPosition.x
       value: -207.60638
@@ -2877,6 +2875,14 @@ Prefab:
     - target: {fileID: 434176, guid: d82e765678923254584e439593116ca4, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11489316, guid: d82e765678923254584e439593116ca4, type: 2}
+      propertyPath: m_ClassEventList.Array.data[0].m_Class
+      value: air-support
+      objectReference: {fileID: 0}
+    - target: {fileID: 11489316, guid: d82e765678923254584e439593116ca4, type: 2}
+      propertyPath: m_ClassEventList.Array.data[0].m_Event
+      value: OnAirSupportRequest
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d82e765678923254584e439593116ca4, type: 2}
