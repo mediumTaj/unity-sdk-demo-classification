@@ -7,6 +7,8 @@ public class WatsonEnabled : MonoBehaviour
 {
     [SerializeField]
     private GameObject m_AirStrikePrefab;
+    [SerializeField]
+    private GameObject m_PizzaPrefab;
 
     [SerializeField]
     private Transform m_PlayerTransform;
@@ -46,6 +48,8 @@ public class WatsonEnabled : MonoBehaviour
     {
         EventManager.Instance.RegisterEventReceiver("OnAirSupportRequest", HandleAirSupportRequest);
         EventManager.Instance.RegisterEventReceiver("OnAirSupportRequestFromKeyboard", HandleAirSupportRequestFromKeyboard);
+        EventManager.Instance.RegisterEventReceiver("OnPizzaRequest", HandlePizzaRequest);
+        EventManager.Instance.RegisterEventReceiver("OnPizzaRequestFromKeyboard", HandlePizzaRequestFromKeyboard);
         EventManager.Instance.RegisterEventReceiver("OnAirstrikeCollide", HandleAirstrikeCollide);
     }
 
@@ -53,6 +57,8 @@ public class WatsonEnabled : MonoBehaviour
     {
         EventManager.Instance.UnregisterEventReceiver("OnAirSupportRequest", HandleAirSupportRequest);
         EventManager.Instance.UnregisterEventReceiver("OnAirSupportRequestFromKeyboard", HandleAirSupportRequestFromKeyboard);
+        EventManager.Instance.UnregisterEventReceiver("OnPizzaRequest", HandlePizzaRequest);
+        EventManager.Instance.UnregisterEventReceiver("OnPizzaRequestFromKeyboard", HandlePizzaRequestFromKeyboard);
         EventManager.Instance.UnregisterEventReceiver("OnAirstrikeCollide", HandleAirstrikeCollide);
     }
 
@@ -69,5 +75,15 @@ public class WatsonEnabled : MonoBehaviour
     private void HandleAirstrikeCollide(object[] args)
     {
         m_AirstrikeDetonated = true;
+    }
+
+    private void HandlePizzaRequest(object[] args)
+    {
+        Instantiate(m_PizzaPrefab, m_PlayerTransform.localPosition + new Vector3(0f, 10f, 0f), Quaternion.identity);
+    }
+
+    private void HandlePizzaRequestFromKeyboard(object[] args)
+    {
+        Instantiate(m_PizzaPrefab, m_PlayerTransform.localPosition + new Vector3(0f, 10f, 0f), Quaternion.identity);
     }
 }
