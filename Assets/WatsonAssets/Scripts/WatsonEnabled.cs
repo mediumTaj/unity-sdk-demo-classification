@@ -12,6 +12,10 @@ public class WatsonEnabled : MonoBehaviour
 
     [SerializeField]
     private Transform m_PlayerTransform;
+    [SerializeField]
+    private GameObject m_PizzaPanel;
+    [SerializeField]
+    private PauseManager m_PauseManager;
 
     [SerializeField]
     private Image m_FlashImage;
@@ -51,6 +55,7 @@ public class WatsonEnabled : MonoBehaviour
         EventManager.Instance.RegisterEventReceiver("OnPizzaRequest", HandlePizzaRequest);
         EventManager.Instance.RegisterEventReceiver("OnPizzaRequestFromKeyboard", HandlePizzaRequestFromKeyboard);
         EventManager.Instance.RegisterEventReceiver("OnAirstrikeCollide", HandleAirstrikeCollide);
+        EventManager.Instance.RegisterEventReceiver("OnPizzaCollected", HandlePizzaCollected);
     }
 
     void OnDisable()
@@ -60,6 +65,7 @@ public class WatsonEnabled : MonoBehaviour
         EventManager.Instance.UnregisterEventReceiver("OnPizzaRequest", HandlePizzaRequest);
         EventManager.Instance.UnregisterEventReceiver("OnPizzaRequestFromKeyboard", HandlePizzaRequestFromKeyboard);
         EventManager.Instance.UnregisterEventReceiver("OnAirstrikeCollide", HandleAirstrikeCollide);
+        EventManager.Instance.UnregisterEventReceiver("OnPizzaCollected", HandlePizzaCollected);
     }
 
     private void HandleAirSupportRequest(object[] args)
@@ -85,5 +91,11 @@ public class WatsonEnabled : MonoBehaviour
     private void HandlePizzaRequestFromKeyboard(object[] args)
     {
         Instantiate(m_PizzaPrefab, m_PlayerTransform.localPosition + new Vector3(0f, 10f, 0f), Quaternion.identity);
+    }
+
+    private void HandlePizzaCollected(object[] args)
+    {
+        m_PizzaPanel.SetActive(true);
+        m_PauseManager.Pause();
     }
 }

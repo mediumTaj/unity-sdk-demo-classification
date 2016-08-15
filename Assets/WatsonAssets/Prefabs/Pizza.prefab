@@ -23,7 +23,8 @@ GameObject:
   - 23: {fileID: 23000010357831578}
   - 54: {fileID: 54000012436995858}
   - 65: {fileID: 65000012791805840}
-  - 114: {fileID: 114000011027462374}
+  - 135: {fileID: 135000013235828674}
+  - 114: {fileID: 114000012694952164}
   m_Layer: 0
   m_Name: Pizza
   m_TagString: Untagged
@@ -107,7 +108,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.062207, z: 0.53999996}
   m_Center: {x: 0, y: 0.0288965, z: 0}
---- !u!114 &114000011027462374
+--- !u!114 &114000012694952164
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -115,6 +116,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000013347489538}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77feb7a7948dafa48b2e70050cd25a84, type: 3}
+  m_Script: {fileID: 11500000, guid: 67861b3cf083b6b4ca737a0a841076c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &135000013235828674
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013347489538}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.26999998
+  m_Center: {x: 0, y: 0.0288965, z: 0}
