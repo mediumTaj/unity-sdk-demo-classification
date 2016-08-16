@@ -16,6 +16,8 @@ public class WatsonEnabled : MonoBehaviour
     private GameObject m_PizzaPanel;
     [SerializeField]
     private PauseManager m_PauseManager;
+    [SerializeField]
+    private PizzaUIManager m_PizzaUIManager;
 
     [SerializeField]
     private Image m_FlashImage;
@@ -31,20 +33,15 @@ public class WatsonEnabled : MonoBehaviour
 
     void Update()
     {
-        //If airstrike has gone off
         if (m_AirstrikeDetonated)
         {
-            // ... set the colour of the damageimage to the flash colour.
             m_FlashImage.color = m_FlashColor;
         }
-        // otherwise...
         else
         {
-            // ... transition the colour back to clear.
             m_FlashImage.color = Color.Lerp(m_FlashImage.color, Color.clear, m_FlashSpeed * Time.deltaTime);
         }
-
-        // reset the airstrikeDetonated flag.
+        
         m_AirstrikeDetonated = false;
     }
 
@@ -95,7 +92,7 @@ public class WatsonEnabled : MonoBehaviour
 
     private void HandlePizzaCollected(object[] args)
     {
-        m_PizzaPanel.SetActive(true);
+        m_PizzaUIManager.IsPizzaPanelVisible = true;
         m_PauseManager.Pause();
     }
 }

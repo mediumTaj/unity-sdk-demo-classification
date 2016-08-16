@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using IBM.Watson.DeveloperCloud.Widgets;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -10,6 +11,10 @@ public class PauseManager : MonoBehaviour {
 	
 	public AudioMixerSnapshot paused;
 	public AudioMixerSnapshot unpaused;
+    public MicrophoneWidget micWidget;
+
+    [SerializeField]
+    private PizzaUIManager m_PizzaUIManager;
 	
 	Canvas canvas;
 	
@@ -22,7 +27,7 @@ public class PauseManager : MonoBehaviour {
 	{
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
-            
+            m_PizzaUIManager.IsPizzaPanelVisible = false;
             Pause();
 		}
 	}
@@ -31,6 +36,7 @@ public class PauseManager : MonoBehaviour {
 	{
         canvas.enabled = !canvas.enabled;
         Time.timeScale = Time.timeScale == 0 ? 1 : 0;
+        micWidget.Active = !micWidget.Active;
 		Lowpass ();
 	}
 	

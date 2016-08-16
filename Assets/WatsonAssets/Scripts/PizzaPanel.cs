@@ -1,21 +1,93 @@
 ﻿using UnityEngine;
 using System.Collections;
 using IBM.Watson.DeveloperCloud.Utilities;
+using UnityEngine.UI;
 
 public class PizzaPanel : MonoBehaviour
 {
-    void OnEnable()
+    [SerializeField]
+    private InputField m_NameField;
+    [SerializeField]
+    private InputField m_AddressField1;
+    [SerializeField]
+    private InputField m_AddressField2;
+    [SerializeField]
+    private InputField m_PhoneNumberField;
+    [SerializeField]
+    private InputField m_CreditCardField;
+    [SerializeField]
+    private InputField m_ExperiationDateField;
+    [SerializeField]
+    private Button m_SubmitButton;
+    [SerializeField]
+    private Button m_OkButton;
+    [SerializeField]
+    private Text m_ThankYouText;
+    [SerializeField]
+    private Text m_ResultText;
+
+    private string m_Name;
+    private string m_Address1;
+    private string m_Address2;
+    private string m_DeliverTime = "20 Minutes";
+    private string m_ResultString = "Your pizza will arrive in \n{0} \n\n{1}\n{2}\n{3}";
+
+    [SerializeField]
+    private PauseManager m_PauseManager;
+    [SerializeField]
+    private PizzaUIManager m_PizzaUIManager;
+
+    public void OnSubmit()
     {
-        EventManager.Instance.RegisterEventReceiver("OnClosePizzaPanel", OnClosePizzaPanel);
+        m_Name = m_NameField.text;
+        m_Address1 = m_AddressField1.text;
+        m_Address2 = m_AddressField2.text;
+
+        m_ResultText.text = string.Format(m_ResultString, m_DeliverTime, m_Name, m_Address1, m_Address2);
+        SetFieldVisibility(false);
+        SetResultVisibility(true);
     }
 
-    void OnDisable()
+    public void OnOK()
     {
-        EventManager.Instance.UnregisterEventReceiver("OnClosePizzaPanel", OnClosePizzaPanel);
+        ClearData();
+        SetFieldVisibility(true);
+        SetResultVisibility(false);
+
+        m_PizzaUIManager.IsPizzaPanelVisible = false;
+        m_PauseManager.Pause();
     }
 
-    private void OnClosePizzaPanel(object[] args)
+    private void SetFieldVisibility(bool isVisible)
     {
-        gameObject.SetActive(false);
+        m_NameField.gameObject.SetActive(isVisible);
+        m_AddressField1.gameObject.SetActive(isVisible);
+        m_AddressField2.gameObject.SetActive(isVisible);
+        m_PhoneNumberField.gameObject.SetActive(isVisible);
+        m_CreditCardField.gameObject.SetActive(isVisible);
+        m_ExperiationDateField.gameObject.SetActive(isVisible);
+        m_SubmitButton.gameObject.SetActive(isVisible);
+    }
+
+    private void SetResultVisibility(bool isVisible)
+    {
+        m_ThankYouText.gameObject.SetActive(isVisible);
+        m_ResultText.gameObject.SetActive(isVisible);
+        m_OkButton.gameObject.SetActive(isVisible);
+    }
+
+    private void ClearData()
+    {
+        m_Name = "";
+        m_Address1 = "";
+        m_Address2 = "";
+
+        m_ResultText.text = "";
+        m_NameField.text = "";
+        m_AddressField1.text = "";
+        m_AddressField2.text = "";
+        m_PhoneNumberField.text = "";
+        m_CreditCardField.text = "";
+        m_ExperiationDateField.text = "";
     }
 }
