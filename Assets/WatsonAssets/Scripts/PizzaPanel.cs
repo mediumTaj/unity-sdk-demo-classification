@@ -30,7 +30,7 @@ public class PizzaPanel : MonoBehaviour
     private string m_Address1;
     private string m_Address2;
     private string m_DeliverTime = "20 Minutes";
-    private string m_ResultString = "Your pizza will arrive in \n{0} \n\n{1}\n{2}\n{3}";
+    private string m_ResultString = "It will arrive in \n{0} \n\n{1}\n{2}\n{3}";
 
     [SerializeField]
     private PauseManager m_PauseManager;
@@ -83,11 +83,18 @@ public class PizzaPanel : MonoBehaviour
         m_Address2 = "";
 
         m_ResultText.text = "";
-        m_NameField.text = "";
-        m_AddressField1.text = "";
-        m_AddressField2.text = "";
-        m_PhoneNumberField.text = "";
-        m_CreditCardField.text = "";
-        m_ExperiationDateField.text = "";
+        m_NameField.text = "Taj Santiago";
+        m_AddressField1.text = "11501 Burnet Rd";
+        m_AddressField2.text = "Austin, TX 78758";
+        m_PhoneNumberField.text = "310-555-5555";
+        m_CreditCardField.text = "123456789012";
+        m_ExperiationDateField.text = "02/18";
+    }
+
+    void OnEnable()
+    {
+        ClearData();
+        SetFieldVisibility(true);
+        SetResultVisibility(false);
     }
 }
