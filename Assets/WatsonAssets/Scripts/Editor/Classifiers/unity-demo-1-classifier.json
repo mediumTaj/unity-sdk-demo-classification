@@ -1,0 +1,94 @@
+{
+    "Expanded": true,
+    "InstancesExpanded": true,
+    "ClassesExpanded": true,
+    "Name": "unity-demo-1-classifier",
+    "Language": "en",
+    "Data": {
+        "air-support": [
+            "i need air support",
+            "send air support",
+            "there's too many of them",
+            "there are too many enemies",
+            "i need the plane",
+            "send in the airplane",
+            "can i get some help"
+        ],
+        "ignore": [
+            "good morning",
+            "how are you",
+            "what would you like to order",
+            "where is my car",
+            "do you want to go to the pool",
+            "i would like a beer",
+            "my name is",
+            "how much wood would a woodchuck chuck if a wood chuck could chuck wood",
+            "hows it going over there",
+            "what time is it",
+            "testing",
+            "test microphone",
+            "is the microphone on",
+            "how does this work",
+            "watson services",
+            "regular attack",
+            "shoot the enemies"
+        ],
+        "pizza": [
+            "i'm hungry",
+            "are you hungry",
+            "i want something to eat",
+            "do you want to get some food",
+            "should we get something to eat",
+            "what do you want to eat",
+            "do you feel like pizza",
+            "do you want to order pizza",
+            "should we grab some pizza",
+            "let's get something to eat",
+            "what do you feel like eating",
+            "do you want to grab a bite",
+            "i'm starving",
+            "i'm famished"
+        ],
+        "pause": [
+            "hold on",
+            "i need to use the bathroom",
+            "the food is here",
+            "there's somebody at the door",
+            "wait a minute",
+            "the pizza is here",
+            "the pizza has arrived",
+            "is that the doorbell",
+            "pause the game",
+            "give me a second"
+        ],
+        "unpause": [
+            "i'm back",
+            "let's go",
+            "i'm ready",
+            "unpause",
+            "let's play",
+            "ok, I'm ready",
+            "let's keep going"
+        ],
+        "help": [
+            "i need help",
+            "what can i do",
+            "what can i say",
+            "what things can i say",
+            "what are the voice commands",
+            "what commands are available",
+            "help",
+            "help please",
+            "what can you do",
+            "what's possible"
+        ]
+    },
+    "DataExpanded": {
+        "air-support": false,
+        "ignore": false,
+        "pizza": false,
+        "pause": false,
+        "unpause": false,
+        "help": false
+    }
+}

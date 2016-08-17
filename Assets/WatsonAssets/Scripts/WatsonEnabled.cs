@@ -67,12 +67,12 @@ public class WatsonEnabled : MonoBehaviour
 
     private void HandleAirSupportRequest(object[] args)
     {
-        Instantiate(m_AirStrikePrefab, m_PlayerTransform.localPosition + new Vector3(0f, 10f, 0f), Quaternion.identity);
+        Instantiate(m_AirStrikePrefab, m_PlayerTransform.localPosition + new Vector3(0f, 8f, 0f) + (m_PlayerTransform.forward * 4), Quaternion.identity);
     }
 
     private void HandleAirSupportRequestFromKeyboard(object[] args)
     {
-        Instantiate(m_AirStrikePrefab, m_PlayerTransform.localPosition + new Vector3(0f, 10f, 0f), Quaternion.identity);
+        Instantiate(m_AirStrikePrefab, m_PlayerTransform.localPosition + new Vector3(0f, 8f, 0f) + (m_PlayerTransform.forward * 4), Quaternion.identity);
     }
 
     private void HandleAirstrikeCollide(object[] args)
@@ -82,12 +82,12 @@ public class WatsonEnabled : MonoBehaviour
 
     private void HandlePizzaRequest(object[] args)
     {
-        Instantiate(m_PizzaPrefab, m_PlayerTransform.localPosition + new Vector3(0f, 10f, 0f), Quaternion.identity);
+        Instantiate(m_PizzaPrefab, m_PlayerTransform.localPosition + new Vector3(0f, 10f, 0f) + (m_PlayerTransform.forward * 5), Quaternion.Euler(0.0f, Random.Range(0f, 360f), 0.0f));
     }
 
     private void HandlePizzaRequestFromKeyboard(object[] args)
     {
-        Instantiate(m_PizzaPrefab, m_PlayerTransform.localPosition + new Vector3(0f, 10f, 0f), Quaternion.identity);
+        Instantiate(m_PizzaPrefab, m_PlayerTransform.localPosition + new Vector3(0f, 10f, 0f) + (m_PlayerTransform.forward * 5), Quaternion.Euler(0.0f, Random.Range(0f, 360f), 0.0f));
     }
 
     private void HandlePizzaCollected(object[] args)
