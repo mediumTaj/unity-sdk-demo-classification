@@ -2,6 +2,7 @@
 using System.Collections;
 using IBM.Watson.DeveloperCloud.Utilities;
 using UnityEngine.UI;
+using IBM.Watson.DeveloperCloud.Logging;
 
 public class PizzaPanel : MonoBehaviour
 {
@@ -93,8 +94,36 @@ public class PizzaPanel : MonoBehaviour
 
     void OnEnable()
     {
+		EventManager.Instance.RegisterEventReceiver("OnSubmitButtonPressed", HandleSubmitPressed);
+		EventManager.Instance.RegisterEventReceiver("OnOKButtonPressed", HandleOKPressed);
+
         ClearData();
         SetFieldVisibility(true);
         SetResultVisibility(false);
+
     }
+
+	void OnDisable()
+	{
+		EventManager.Instance.UnregisterEventReceiver("OnSubmitButtonPressed", HandleSubmitPressed);
+		EventManager.Instance.UnregisterEventReceiver("OnOKButtonPressed", HandleOKPressed);
+	}
+
+	private void HandleOKPressed(object[] args)
+	{
+		OnOK();
+	}
+
+	private void HandleSubmitPressed(object[] args)
+	{
+		OnSubmit();
+	}
+
+	void Update()
+	{
+		if(Input.GetButton("OK"))
+			EventManager.Instance.SendEvent("OnOKButtonPressed");
+		if(Input.GetButton("Submit"))
+			EventManager.Instance.SendEvent("OnSubmitButtonPressed");
+	}
 }

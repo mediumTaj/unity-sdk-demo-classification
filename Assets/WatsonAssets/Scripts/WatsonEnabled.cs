@@ -42,6 +42,12 @@ public class WatsonEnabled : MonoBehaviour
             m_FlashImage.color = Color.Lerp(m_FlashImage.color, Color.clear, m_FlashSpeed * Time.deltaTime);
         }
         
+		if(Input.GetAxis("Fire2") == 1f)
+			EventManager.Instance.SendEvent("OnAirSupportRequestFromKeyboard");
+
+		if(Input.GetAxis("Fire3") == 1f)
+			EventManager.Instance.SendEvent("OnPizzaRequestFromKeyboard");
+
         m_AirstrikeDetonated = false;
     }
 
@@ -57,7 +63,7 @@ public class WatsonEnabled : MonoBehaviour
 		EventManager.Instance.RegisterEventReceiver("OnUnpuaseRequest", HandleUnpauseRequest);
 		EventManager.Instance.RegisterEventReceiver("OnHelpRequest", HandleHelpRequest);
 		EventManager.Instance.RegisterEventReceiver("OnPauseRequestFromKeyboard", HandlePauseRequestFromKeyboard);
-		EventManager.Instance.RegisterEventReceiver("OnUnpuaseRequestFromKeyboard", HandleUnpauseRequestFromKeyboard);
+		EventManager.Instance.RegisterEventReceiver("OnUnpauseRequestFromKeyboard", HandleUnpauseRequestFromKeyboard);
 		EventManager.Instance.RegisterEventReceiver("OnHelpRequestFromKeyboard", HandleHelpRequestFromKeyboard);
 	}
 
@@ -73,7 +79,7 @@ public class WatsonEnabled : MonoBehaviour
 		EventManager.Instance.UnregisterEventReceiver("OnUnpuaseRequest", HandleUnpauseRequest);
 		EventManager.Instance.UnregisterEventReceiver("OnHelpRequest", HandleHelpRequest);
 		EventManager.Instance.UnregisterEventReceiver("OnPauseRequestFromKeyboard", HandlePauseRequestFromKeyboard);
-		EventManager.Instance.UnregisterEventReceiver("OnUnpuaseRequestFromKeyboard", HandleUnpauseRequestFromKeyboard);
+		EventManager.Instance.UnregisterEventReceiver("OnUnpauseRequestFromKeyboard", HandleUnpauseRequestFromKeyboard);
 		EventManager.Instance.UnregisterEventReceiver("OnHelpRequestFromKeyboard", HandleHelpRequestFromKeyboard);
 	}
 

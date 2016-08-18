@@ -84,7 +84,7 @@ namespace CompleteProject
 //                playerRigidbody.MoveRotation (newRotatation);
 //            }
 
-			Vector3 turnDir = new Vector3(CrossPlatformInputManager.GetAxisRaw("Joystick Y"), 0, -CrossPlatformInputManager.GetAxisRaw("Joystick X"));
+			Vector3 turnDir = new Vector3(Input.GetAxis("Joystick X"), 0, -Input.GetAxis("Joystick Y"));
 
 			if(turnDir != Vector3.zero)
 			{

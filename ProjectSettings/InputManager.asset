@@ -115,7 +115,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 2
+    axis: 0
     joyNum: 0
   - serializedVersion: 3
     m_Name: Mouse Y
@@ -131,7 +131,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 4
+    axis: 1
     joyNum: 0
   - serializedVersion: 3
     m_Name: Mouse ScrollWheel
@@ -303,11 +303,11 @@ InputManager:
     altPositiveButton: 
     gravity: 0
     dead: 0
-    sensitivity: 1
+    sensitivity: 0.001
     snap: 0
     invert: 0
     type: 2
-    axis: 3
+    axis: 2
     joyNum: 0
   - serializedVersion: 3
     m_Name: Joystick Y
@@ -319,9 +319,41 @@ InputManager:
     altPositiveButton: 
     gravity: 0
     dead: 0
-    sensitivity: 1
+    sensitivity: 0.001
     snap: 0
     invert: 0
     type: 2
-    axis: 2
+    axis: 3
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: OK
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick button 14
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: Submit
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick button 13
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
     joyNum: 0
