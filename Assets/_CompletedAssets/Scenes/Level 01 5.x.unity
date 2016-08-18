@@ -655,7 +655,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   paused: {fileID: 24500000, guid: 5b84db49d40ea449aa4f3e3bd229ab5b, type: 2}
   unpaused: {fileID: 24500003, guid: 5b84db49d40ea449aa4f3e3bd229ab5b, type: 2}
-  micWidget: {fileID: 980396624}
   IsPaused: 0
   m_PizzaUIManager: {fileID: 244922613}
 --- !u!114 &244922612
@@ -3152,15 +3151,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 434176, guid: 939dd1ce0c21c431cada99c74a94d43f, type: 2}
       propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 434176, guid: 939dd1ce0c21c431cada99c74a94d43f, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 434176, guid: 939dd1ce0c21c431cada99c74a94d43f, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 939dd1ce0c21c431cada99c74a94d43f, type: 2}
@@ -3560,12 +3551,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
---- !u!114 &980396624 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11406180, guid: 337eda4d7be18aa45bc090ad9cc57644,
-    type: 2}
-  m_PrefabInternal: {fileID: 1833814049}
-  m_Script: {fileID: 11500000, guid: 131721b15c8a68d438d5b7163a1c05df, type: 3}
 --- !u!1 &1038376789
 GameObject:
   m_ObjectHideFlags: 0
@@ -4486,7 +4471,7 @@ MonoBehaviour:
     m_Event: OnPauseRequestFromKeyboard
   - m_Key: 50
     m_Modifiers: 0
-    m_Event: OnUnpuaseRequestFromKeyboard
+    m_Event: OnUnpauseRequestFromKeyboard
   - m_Key: 51
     m_Modifiers: 0
     m_Event: OnHelpRequestFromKeyboard

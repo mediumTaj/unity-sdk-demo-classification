@@ -60,7 +60,7 @@ public class WatsonEnabled : MonoBehaviour
         EventManager.Instance.RegisterEventReceiver("OnAirstrikeCollide", HandleAirstrikeCollide);
         EventManager.Instance.RegisterEventReceiver("OnPizzaCollected", HandlePizzaCollected);
         EventManager.Instance.RegisterEventReceiver("OnPauseRequest", HandlePauseRequest);
-		EventManager.Instance.RegisterEventReceiver("OnUnpuaseRequest", HandleUnpauseRequest);
+		EventManager.Instance.RegisterEventReceiver("OnUnpauseRequest", HandleUnpauseRequest);
 		EventManager.Instance.RegisterEventReceiver("OnHelpRequest", HandleHelpRequest);
 		EventManager.Instance.RegisterEventReceiver("OnPauseRequestFromKeyboard", HandlePauseRequestFromKeyboard);
 		EventManager.Instance.RegisterEventReceiver("OnUnpauseRequestFromKeyboard", HandleUnpauseRequestFromKeyboard);
@@ -76,7 +76,7 @@ public class WatsonEnabled : MonoBehaviour
         EventManager.Instance.UnregisterEventReceiver("OnAirstrikeCollide", HandleAirstrikeCollide);
         EventManager.Instance.UnregisterEventReceiver("OnPizzaCollected", HandlePizzaCollected);
 		EventManager.Instance.UnregisterEventReceiver("OnPauseRequest", HandlePauseRequest);
-		EventManager.Instance.UnregisterEventReceiver("OnUnpuaseRequest", HandleUnpauseRequest);
+		EventManager.Instance.UnregisterEventReceiver("OnUnpauseRequest", HandleUnpauseRequest);
 		EventManager.Instance.UnregisterEventReceiver("OnHelpRequest", HandleHelpRequest);
 		EventManager.Instance.UnregisterEventReceiver("OnPauseRequestFromKeyboard", HandlePauseRequestFromKeyboard);
 		EventManager.Instance.UnregisterEventReceiver("OnUnpauseRequestFromKeyboard", HandleUnpauseRequestFromKeyboard);
@@ -85,12 +85,14 @@ public class WatsonEnabled : MonoBehaviour
 
     private void HandleAirSupportRequest(object[] args)
     {
-        Instantiate(m_AirStrikePrefab, m_PlayerTransform.localPosition + new Vector3(0f, 8f, 0f) + (m_PlayerTransform.forward * 4), Quaternion.identity);
+		if(!m_PauseManager.IsPaused)
+        	Instantiate(m_AirStrikePrefab, m_PlayerTransform.localPosition + new Vector3(0f, 8f, 0f) + (m_PlayerTransform.forward * 4), Quaternion.identity);
     }
 
     private void HandleAirSupportRequestFromKeyboard(object[] args)
     {
-        Instantiate(m_AirStrikePrefab, m_PlayerTransform.localPosition + new Vector3(0f, 8f, 0f) + (m_PlayerTransform.forward * 4), Quaternion.identity);
+		if(!m_PauseManager.IsPaused)
+        	Instantiate(m_AirStrikePrefab, m_PlayerTransform.localPosition + new Vector3(0f, 8f, 0f) + (m_PlayerTransform.forward * 4), Quaternion.identity);
     }
 
     private void HandleAirstrikeCollide(object[] args)
@@ -100,12 +102,14 @@ public class WatsonEnabled : MonoBehaviour
 
     private void HandlePizzaRequest(object[] args)
     {
-        Instantiate(m_PizzaPrefab, m_PlayerTransform.localPosition + new Vector3(0f, 10f, 0f) + (m_PlayerTransform.forward * 5), Quaternion.Euler(0.0f, Random.Range(0f, 360f), 0.0f));
+		if(!m_PauseManager.IsPaused)
+        	Instantiate(m_PizzaPrefab, m_PlayerTransform.localPosition + new Vector3(0f, 10f, 0f) + (m_PlayerTransform.forward * 5), Quaternion.Euler(0.0f, Random.Range(0f, 360f), 0.0f));
     }
 
     private void HandlePizzaRequestFromKeyboard(object[] args)
     {
-        Instantiate(m_PizzaPrefab, m_PlayerTransform.localPosition + new Vector3(0f, 10f, 0f) + (m_PlayerTransform.forward * 5), Quaternion.Euler(0.0f, Random.Range(0f, 360f), 0.0f));
+		if(!m_PauseManager.IsPaused)
+        	Instantiate(m_PizzaPrefab, m_PlayerTransform.localPosition + new Vector3(0f, 10f, 0f) + (m_PlayerTransform.forward * 5), Quaternion.Euler(0.0f, Random.Range(0f, 360f), 0.0f));
     }
 
     private void HandlePizzaCollected(object[] args)
@@ -116,12 +120,14 @@ public class WatsonEnabled : MonoBehaviour
 
 	private void HandlePauseRequest(object[] args)
 	{
-		Log.Debug("WatsonEnabled", "HandlePauseRequest");
+		if(!m_PauseManager.IsPaused)
+			m_PauseManager.Pause();
 	}
 
 	private void HandleUnpauseRequest(object[] args)
 	{
-		Log.Debug("WatsonEnabled", "HandleUnpauseRequest");
+		if(m_PauseManager.IsPaused)
+			m_PauseManager.Pause();
 	}
 
 	private void HandleHelpRequest(object[] args)
@@ -131,12 +137,14 @@ public class WatsonEnabled : MonoBehaviour
 
 	private void HandlePauseRequestFromKeyboard(object[] args)
 	{
-		Log.Debug("WatsonEnabled", "HandlePauseRequestFromKeyboard");
+		if(!m_PauseManager.IsPaused)
+			m_PauseManager.Pause();
 	}
 
 	private void HandleUnpauseRequestFromKeyboard(object[] args)
 	{
-		Log.Debug("WatsonEnabled", "HandleUnpauseRequestFromKeyboard");
+		if(m_PauseManager.IsPaused)
+			m_PauseManager.Pause();
 	}
 
 	private void HandleHelpRequestFromKeyboard(object[] args)

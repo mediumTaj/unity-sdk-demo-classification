@@ -11,7 +11,6 @@ public class PauseManager : MonoBehaviour {
 	
 	public AudioMixerSnapshot paused;
 	public AudioMixerSnapshot unpaused;
-    public MicrophoneWidget micWidget;
 	public bool IsPaused = false;
 
     [SerializeField]
@@ -38,7 +37,6 @@ public class PauseManager : MonoBehaviour {
         canvas.enabled = !canvas.enabled;
         Time.timeScale = Time.timeScale == 0 ? 1 : 0;
 		IsPaused = !IsPaused;
-        micWidget.Active = !micWidget.Active;
 		Lowpass ();
 	}
 	
