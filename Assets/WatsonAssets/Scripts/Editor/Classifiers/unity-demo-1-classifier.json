@@ -59,7 +59,11 @@
             "the pizza has arrived",
             "is that the doorbell",
             "pause the game",
-            "give me a second"
+            "give me a second",
+            "can you pause",
+            "hold up",
+            "hold on a sec",
+            "wait up"
         ],
         "unpause": [
             "i'm back",

@@ -53,9 +53,15 @@ public class WatsonEnabled : MonoBehaviour
         EventManager.Instance.RegisterEventReceiver("OnPizzaRequestFromKeyboard", HandlePizzaRequestFromKeyboard);
         EventManager.Instance.RegisterEventReceiver("OnAirstrikeCollide", HandleAirstrikeCollide);
         EventManager.Instance.RegisterEventReceiver("OnPizzaCollected", HandlePizzaCollected);
-    }
+        EventManager.Instance.RegisterEventReceiver("OnPauseRequest", HandlePauseRequest);
+		EventManager.Instance.RegisterEventReceiver("OnUnpuaseRequest", HandleUnpauseRequest);
+		EventManager.Instance.RegisterEventReceiver("OnHelpRequest", HandleHelpRequest);
+		EventManager.Instance.RegisterEventReceiver("OnPauseRequestFromKeyboard", HandlePauseRequestFromKeyboard);
+		EventManager.Instance.RegisterEventReceiver("OnUnpuaseRequestFromKeyboard", HandleUnpauseRequestFromKeyboard);
+		EventManager.Instance.RegisterEventReceiver("OnHelpRequestFromKeyboard", HandleHelpRequestFromKeyboard);
+	}
 
-    void OnDisable()
+	void OnDisable()
     {
         EventManager.Instance.UnregisterEventReceiver("OnAirSupportRequest", HandleAirSupportRequest);
         EventManager.Instance.UnregisterEventReceiver("OnAirSupportRequestFromKeyboard", HandleAirSupportRequestFromKeyboard);
@@ -63,7 +69,13 @@ public class WatsonEnabled : MonoBehaviour
         EventManager.Instance.UnregisterEventReceiver("OnPizzaRequestFromKeyboard", HandlePizzaRequestFromKeyboard);
         EventManager.Instance.UnregisterEventReceiver("OnAirstrikeCollide", HandleAirstrikeCollide);
         EventManager.Instance.UnregisterEventReceiver("OnPizzaCollected", HandlePizzaCollected);
-    }
+		EventManager.Instance.UnregisterEventReceiver("OnPauseRequest", HandlePauseRequest);
+		EventManager.Instance.UnregisterEventReceiver("OnUnpuaseRequest", HandleUnpauseRequest);
+		EventManager.Instance.UnregisterEventReceiver("OnHelpRequest", HandleHelpRequest);
+		EventManager.Instance.UnregisterEventReceiver("OnPauseRequestFromKeyboard", HandlePauseRequestFromKeyboard);
+		EventManager.Instance.UnregisterEventReceiver("OnUnpuaseRequestFromKeyboard", HandleUnpauseRequestFromKeyboard);
+		EventManager.Instance.UnregisterEventReceiver("OnHelpRequestFromKeyboard", HandleHelpRequestFromKeyboard);
+	}
 
     private void HandleAirSupportRequest(object[] args)
     {
@@ -95,4 +107,34 @@ public class WatsonEnabled : MonoBehaviour
         m_PizzaUIManager.IsPizzaPanelVisible = true;
         m_PauseManager.Pause();
     }
+
+	private void HandlePauseRequest(object[] args)
+	{
+		Log.Debug("WatsonEnabled", "HandlePauseRequest");
+	}
+
+	private void HandleUnpauseRequest(object[] args)
+	{
+		Log.Debug("WatsonEnabled", "HandleUnpauseRequest");
+	}
+
+	private void HandleHelpRequest(object[] args)
+	{
+		Log.Debug("WatsonEnabled", "HandleHelpRequest");
+	}
+
+	private void HandlePauseRequestFromKeyboard(object[] args)
+	{
+		Log.Debug("WatsonEnabled", "HandlePauseRequestFromKeyboard");
+	}
+
+	private void HandleUnpauseRequestFromKeyboard(object[] args)
+	{
+		Log.Debug("WatsonEnabled", "HandleUnpauseRequestFromKeyboard");
+	}
+
+	private void HandleHelpRequestFromKeyboard(object[] args)
+	{
+		Log.Debug("WatsonEnabled", "HandleHelpRequestFromKeyboard");
+	}
 }

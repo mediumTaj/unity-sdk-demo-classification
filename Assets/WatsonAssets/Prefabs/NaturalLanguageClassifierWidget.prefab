@@ -45,15 +45,21 @@ MonoBehaviour:
     m_Connections: []
   m_ClassifierName: ${NLC_CLASSIFIER_NAME}
   m_ClassifierId: ${NLC_CLASSIFIER_ID}
-  m_MinWordConfidence: 0.3
-  m_IgnoreWordConfidence: 0.5
-  m_MinClassEventConfidence: 0.9
+  m_MinWordConfidence: 0
+  m_IgnoreWordConfidence: 0
+  m_MinClassEventConfidence: 0
   m_Language: en
   m_ClassEventList:
   - m_Class: air-support
     m_Event: OnAirSupportRequest
   - m_Class: pizza
     m_Event: OnPizzaRequest
+  - m_Class: pause
+    m_Event: OnPauseRequest
+  - m_Class: unpause
+    m_Event: OnUnpuaseRequest
+  - m_Class: help
+    m_Event: OnHelpRequest
   m_TopClassText: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:

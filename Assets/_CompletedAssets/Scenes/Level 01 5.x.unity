@@ -656,6 +656,7 @@ MonoBehaviour:
   paused: {fileID: 24500000, guid: 5b84db49d40ea449aa4f3e3bd229ab5b, type: 2}
   unpaused: {fileID: 24500003, guid: 5b84db49d40ea449aa4f3e3bd229ab5b, type: 2}
   micWidget: {fileID: 980396624}
+  IsPaused: 0
   m_PizzaUIManager: {fileID: 244922613}
 --- !u!114 &244922612
 MonoBehaviour:
@@ -4426,6 +4427,15 @@ MonoBehaviour:
   - m_Key: 27
     m_Modifiers: 0
     m_Event: OnEscapeKey
+  - m_Key: 49
+    m_Modifiers: 0
+    m_Event: OnPauseRequestFromKeyboard
+  - m_Key: 50
+    m_Modifiers: 0
+    m_Event: OnUnpuaseRequestFromKeyboard
+  - m_Key: 51
+    m_Modifiers: 0
+    m_Event: OnHelpRequestFromKeyboard
 --- !u!114 &1404522898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4533,10 +4543,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1404522896}
     m_Modifications:
-    - target: {fileID: 11489316, guid: d82e765678923254584e439593116ca4, type: 2}
-      propertyPath: m_ClassEventList.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 434176, guid: d82e765678923254584e439593116ca4, type: 2}
       propertyPath: m_LocalPosition.x
       value: -207.60638
@@ -4568,22 +4574,6 @@ Prefab:
     - target: {fileID: 434176, guid: d82e765678923254584e439593116ca4, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 11489316, guid: d82e765678923254584e439593116ca4, type: 2}
-      propertyPath: m_ClassEventList.Array.data[0].m_Class
-      value: air-support
-      objectReference: {fileID: 0}
-    - target: {fileID: 11489316, guid: d82e765678923254584e439593116ca4, type: 2}
-      propertyPath: m_ClassEventList.Array.data[0].m_Event
-      value: OnAirSupportRequest
-      objectReference: {fileID: 0}
-    - target: {fileID: 11489316, guid: d82e765678923254584e439593116ca4, type: 2}
-      propertyPath: m_ClassEventList.Array.data[1].m_Class
-      value: pizza
-      objectReference: {fileID: 0}
-    - target: {fileID: 11489316, guid: d82e765678923254584e439593116ca4, type: 2}
-      propertyPath: m_ClassEventList.Array.data[1].m_Event
-      value: OnPizzaRequest
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d82e765678923254584e439593116ca4, type: 2}
