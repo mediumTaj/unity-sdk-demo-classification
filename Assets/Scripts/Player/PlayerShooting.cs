@@ -37,6 +37,11 @@ public class PlayerShooting : MonoBehaviour
             Shoot ();
         }
 
+		if(Input.GetButton("JoystickRightTrigger") && timer >= timeBetweenBullets && Time.timeScale != 0)
+		{
+			Shoot();
+		}
+
         if(timer >= timeBetweenBullets * effectsDisplayTime)
         {
             DisableEffects ();
