@@ -31,7 +31,7 @@ public class PizzaPanel : MonoBehaviour
     private string m_Address1;
     private string m_Address2;
     private string m_DeliverTime = "20 Minutes";
-    private string m_ResultString = "It will arrive in \n{0} \n\n{1}\n{2}\n{3}";
+    private string m_ResultString = "It will arrive in {0} \n\n{1}\n{2}\n{3}";
 
     [SerializeField]
     private PauseManager m_PauseManager;
