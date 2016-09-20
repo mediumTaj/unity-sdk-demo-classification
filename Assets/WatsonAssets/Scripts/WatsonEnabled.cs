@@ -2,6 +2,7 @@
 using IBM.Watson.DeveloperCloud.Logging;
 using IBM.Watson.DeveloperCloud.Utilities;
 using UnityEngine.UI;
+using System;
 
 public class WatsonEnabled : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class WatsonEnabled : MonoBehaviour
     private PauseManager m_PauseManager;
     [SerializeField]
     private PizzaUIManager m_PizzaUIManager;
+	[SerializeField]
+	private GameObject m_HelpPanel;
 
     [SerializeField]
     private Image m_FlashImage;
@@ -25,11 +28,24 @@ public class WatsonEnabled : MonoBehaviour
     private bool m_AirstrikeDetonated = false;
     private Color m_FlashColor = new Color(1f, 1f, 1f, 1f);
     private float m_FlashSpeed = 0.01f;
+	[SerializeField]
+	private CompleteProject.PlayerHealth m_PlayerHealth = null;
 
     void Start()
     {
         LogSystem.InstallDefaultReactors();
-    }
+		if(m_HelpPanel != null)
+		{
+			m_HelpPanel.SetActive(false);
+		}
+		else
+		{
+			throw new NullReferenceException("Help Panel is null");
+		}
+
+		if (m_PlayerHealth == null)
+			throw new NullReferenceException("Player health script not found!");
+	}
 
     void Update()
     {
@@ -65,6 +81,10 @@ public class WatsonEnabled : MonoBehaviour
 		EventManager.Instance.RegisterEventReceiver("OnPauseRequestFromKeyboard", HandlePauseRequestFromKeyboard);
 		EventManager.Instance.RegisterEventReceiver("OnUnpauseRequestFromKeyboard", HandleUnpauseRequestFromKeyboard);
 		EventManager.Instance.RegisterEventReceiver("OnHelpRequestFromKeyboard", HandleHelpRequestFromKeyboard);
+		EventManager.Instance.RegisterEventReceiver("OnInstructionsRequest", HandleInstructionsRequest);
+		EventManager.Instance.RegisterEventReceiver("OnCloseInstructionsRequest", HandleCloseInstructionsRequest);
+		EventManager.Instance.RegisterEventReceiver("OnTeleport", HandleTeleport);
+		EventManager.Instance.RegisterEventReceiver("OnRequestLife", OnRequestLife);
 	}
 
 	void OnDisable()
@@ -81,9 +101,13 @@ public class WatsonEnabled : MonoBehaviour
 		EventManager.Instance.UnregisterEventReceiver("OnPauseRequestFromKeyboard", HandlePauseRequestFromKeyboard);
 		EventManager.Instance.UnregisterEventReceiver("OnUnpauseRequestFromKeyboard", HandleUnpauseRequestFromKeyboard);
 		EventManager.Instance.UnregisterEventReceiver("OnHelpRequestFromKeyboard", HandleHelpRequestFromKeyboard);
+		EventManager.Instance.UnregisterEventReceiver("OnInstructionsRequest", HandleInstructionsRequest);
+		EventManager.Instance.UnregisterEventReceiver("OnCloseInstructionsRequest", HandleCloseInstructionsRequest);
+		EventManager.Instance.UnregisterEventReceiver("OnTeleport", HandleTeleport);
+		EventManager.Instance.UnregisterEventReceiver("OnRequestLife", OnRequestLife);
 	}
 
-    private void HandleAirSupportRequest(object[] args)
+	private void HandleAirSupportRequest(object[] args)
     {
 		if(!m_PauseManager.IsPaused)
         	Instantiate(m_AirStrikePrefab, m_PlayerTransform.localPosition + new Vector3(0f, 8f, 0f) + (m_PlayerTransform.forward * 4), Quaternion.identity);
@@ -103,13 +127,13 @@ public class WatsonEnabled : MonoBehaviour
     private void HandlePizzaRequest(object[] args)
     {
 		if(!m_PauseManager.IsPaused)
-        	Instantiate(m_PizzaPrefab, m_PlayerTransform.localPosition + new Vector3(0f, 10f, 0f) + (m_PlayerTransform.forward * 5), Quaternion.Euler(0.0f, Random.Range(0f, 360f), 0.0f));
+        	Instantiate(m_PizzaPrefab, m_PlayerTransform.localPosition + new Vector3(0f, 10f, 0f) + (m_PlayerTransform.forward * 5), Quaternion.Euler(0.0f, UnityEngine.Random.Range(0f, 360f), 0.0f));
     }
 
     private void HandlePizzaRequestFromKeyboard(object[] args)
     {
 		if(!m_PauseManager.IsPaused)
-        	Instantiate(m_PizzaPrefab, m_PlayerTransform.localPosition + new Vector3(0f, 10f, 0f) + (m_PlayerTransform.forward * 5), Quaternion.Euler(0.0f, Random.Range(0f, 360f), 0.0f));
+        	Instantiate(m_PizzaPrefab, m_PlayerTransform.localPosition + new Vector3(0f, 10f, 0f) + (m_PlayerTransform.forward * 5), Quaternion.Euler(0.0f, UnityEngine.Random.Range(0f, 360f), 0.0f));
     }
 
     private void HandlePizzaCollected(object[] args)
@@ -150,5 +174,28 @@ public class WatsonEnabled : MonoBehaviour
 	private void HandleHelpRequestFromKeyboard(object[] args)
 	{
 		Log.Debug("WatsonEnabled", "HandleHelpRequestFromKeyboard");
+	}
+
+	private void HandleInstructionsRequest(object[] args)
+	{
+		m_HelpPanel.SetActive(true);
+	}
+
+	private void HandleCloseInstructionsRequest(object[] args)
+	{
+		m_HelpPanel.SetActive(false);
+	}
+
+	private void HandleTeleport(object[] args)
+	{
+		Log.Debug("WatsonEnabled", "HandleTeleport");
+		m_PlayerTransform.position = new Vector3(UnityEngine.Random.Range(-5f, 5f), 0f, UnityEngine.Random.Range(-5f, 5f));
+	}
+
+	private void OnRequestLife(object[] args)
+	{
+		Log.Debug("WatsonEnabled", "OnRequestLife");
+		m_PlayerHealth.currentHealth = m_PlayerHealth.startingHealth;
+		m_PlayerHealth.TakeDamage(0);
 	}
 }

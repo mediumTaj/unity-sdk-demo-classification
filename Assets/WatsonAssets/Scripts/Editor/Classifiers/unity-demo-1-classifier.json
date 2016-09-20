@@ -85,6 +85,33 @@
             "help please",
             "what can you do",
             "what's possible"
+        ],
+        "show-help": [
+            "what can I say",
+            "what voice commands are there",
+            "show me the voice commands",
+            "what can you understand",
+            "how are you trained"
+        ],
+        "hide-help": [
+            "hide the voice commands",
+            "get rid of the commands window",
+            "hide that window",
+            "i know what to say"
+        ],
+        "teleport": [
+            "teleport me out of here",
+            "get me away from them",
+            "take me somewhere safe",
+            "get me out of here",
+            "how can i get away from them",
+            "i'm surrounded"
+        ],
+        "life": [
+            "I'm almost dead",
+            "I need some life",
+            "I won't last much longer",
+            "I'm going to die"
         ]
     },
     "DataExpanded": {
@@ -93,6 +120,10 @@
         "pizza": false,
         "pause": false,
         "unpause": false,
-        "help": false
+        "help": false,
+        "show-help": false,
+        "hide-help": false,
+        "teleport": false,
+        "life": true
     }
 }

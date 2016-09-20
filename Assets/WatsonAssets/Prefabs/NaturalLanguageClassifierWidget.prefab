@@ -59,7 +59,15 @@ MonoBehaviour:
   - m_Class: unpause
     m_Event: OnUnpauseRequest
   - m_Class: help
-    m_Event: OnHelpRequest
+    m_Event: OnInstructionsRequest
+  - m_Class: show-help
+    m_Event: OnInstructionsRequest
+  - m_Class: hide-help
+    m_Event: OnCloseInstructionsRequest
+  - m_Class: teleport
+    m_Event: OnTeleport
+  - m_Class: life
+    m_Event: OnRequestLife
   m_TopClassText: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
